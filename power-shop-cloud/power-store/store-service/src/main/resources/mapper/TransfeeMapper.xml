@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.mapper.TransfeeMapper">
+
+    <resultMap id="BaseResultMap" type="com.bjpowernode.domain.Transfee">
+            <id property="transfeeId" column="transfee_id" jdbcType="BIGINT"/>
+            <result property="transportId" column="transport_id" jdbcType="BIGINT"/>
+            <result property="continuousPiece" column="continuous_piece" jdbcType="DECIMAL"/>
+            <result property="firstPiece" column="first_piece" jdbcType="DECIMAL"/>
+            <result property="continuousFee" column="continuous_fee" jdbcType="DECIMAL"/>
+            <result property="firstFee" column="first_fee" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        transfee_id,transport_id,continuous_piece,
+        first_piece,continuous_fee,first_fee
+    </sql>
+    <insert id="insert" parameterType="com.bjpowernode.domain.Transfee" keyProperty="transfeeId" keyColumn="transfee_id">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="transfeeId">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into transfee(
+        transport_id, continuous_piece, first_piece, continuous_fee, first_fee
+        )
+        values
+        (#{transportId},#{continuousPiece},#{firstPiece},#{continuousFee},#{firstFee})
+    </insert>
+</mapper>

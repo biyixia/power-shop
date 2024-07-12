@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.mapper.TransportMapper">
+
+    <resultMap id="BaseResultMap" type="com.bjpowernode.domain.Transport">
+            <id property="transportId" column="transport_id" jdbcType="BIGINT"/>
+            <result property="transName" column="trans_name" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="shopId" column="shop_id" jdbcType="BIGINT"/>
+            <result property="chargeType" column="charge_type" jdbcType="TINYINT"/>
+            <result property="isFreeFee" column="is_free_fee" jdbcType="TINYINT"/>
+            <result property="hasFreeCondition" column="has_free_condition" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        transport_id,trans_name,create_time,
+        shop_id,charge_type,is_free_fee,
+        has_free_condition
+    </sql>
+    <insert id="insert" parameterType="com.bjpowernode.domain.Transport" keyColumn="transport_id" keyProperty="transportId">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="transportId">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into transport(
+            transport_id, trans_name, create_time, shop_id, charge_type, is_free_fee, has_free_condition
+        )
+        values
+        (#{transportId},#{transName},#{createTime},#{shopId},#{chargeType},#{isFreeFee},#{hasFreeCondition})
+    </insert>
+</mapper>

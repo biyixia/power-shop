@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.mapper.SysMenuMapper">
+
+    <resultMap id="BaseResultMap" type="com.bjpowernode.domain.SysMenu">
+            <id property="menuId" column="menu_id" jdbcType="BIGINT"/>
+            <result property="parentId" column="parent_id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="url" column="url" jdbcType="VARCHAR"/>
+            <result property="perms" column="perms" jdbcType="VARCHAR"/>
+            <result property="type" column="type" jdbcType="INTEGER"/>
+            <result property="icon" column="icon" jdbcType="VARCHAR"/>
+            <result property="orderNum" column="order_num" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        menu_id,parent_id,name,
+        url,perms,type,
+        icon,order_num
+    </sql>
+    <select id="getMenuList" resultType="com.bjpowernode.domain.SysMenu">
+        SELECT sm.*
+        from sys_menu sm
+                 JOIN sys_role_menu srm ON sm.menu_id = srm.menu_id
+                 JOIN sys_user_role sur ON sur.role_id = srm.role_id
+        WHERE sur.user_id = #{userId} and type between 0 and 1
+    </select>
+</mapper>

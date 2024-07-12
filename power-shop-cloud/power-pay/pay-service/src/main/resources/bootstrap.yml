@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: 48ea0dd3-122b-4a35-87cb-e424ecee8c40
+        group: DEFAULT_GROUP
+        username: nacos
+        password: nacos
+        file-extension: yaml
+        prefix: application
+  profiles:
+    active:
+      nacos, jackson, rabbitmq, redis, datasource, mybatis

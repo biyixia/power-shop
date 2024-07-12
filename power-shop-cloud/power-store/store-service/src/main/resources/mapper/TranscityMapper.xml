@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.mapper.TranscityMapper">
+
+    <resultMap id="BaseResultMap" type="com.bjpowernode.domain.Transcity">
+            <id property="transcityId" column="transcity_id" jdbcType="BIGINT"/>
+            <result property="transfeeId" column="transfee_id" jdbcType="BIGINT"/>
+            <result property="cityId" column="city_id" jdbcType="BIGINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        transcity_id,transfee_id,city_id
+    </sql>
+</mapper>

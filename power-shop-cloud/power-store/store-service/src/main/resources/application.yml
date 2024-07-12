@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: store-service
+server:
+  port: 5001

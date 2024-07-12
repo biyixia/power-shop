@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bjpowernode.mapper.TransfeeFreeMapper">
+
+    <resultMap id="BaseResultMap" type="com.bjpowernode.domain.TransfeeFree">
+            <id property="transfeeFreeId" column="transfee_free_id" jdbcType="BIGINT"/>
+            <result property="transportId" column="transport_id" jdbcType="BIGINT"/>
+            <result property="freeType" column="free_type" jdbcType="TINYINT"/>
+            <result property="amount" column="amount" jdbcType="DECIMAL"/>
+            <result property="piece" column="piece" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        transfee_free_id,transport_id,free_type,
+        amount,piece
+    </sql>
+    <insert id="insert" parameterType="com.bjpowernode.domain.TransfeeFree" keyProperty="transfeeFreeId" keyColumn="transfee_free_id">
+        <selectKey resultType="java.lang.Long" order="AFTER" keyProperty="transfeeFreeId">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into transfee_free(
+        transport_id, free_type, amount, piece
+        )
+        values
+        (#{transportId},#{freeType},#{amount},#{piece})
+    </insert>
+</mapper>
